@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tanzhouedu.pm.dao.mapper.AreaMapper">
+    <select id="queryList" parameterType="Area" resultType="Area">
+
+    </select>
+
+    <select id="queryById" parameterType="string" resultType="Area">
+
+    </select>
+    <insert id="insert" parameterType="Area" useGeneratedKeys="true"
+            keyProperty="id">
+
+    </insert>
+    <update id="update" parameterType="Area">
+
+    </update>
+    <delete id="delete" parameterType="Area">
+
+    </delete>
+</mapper>

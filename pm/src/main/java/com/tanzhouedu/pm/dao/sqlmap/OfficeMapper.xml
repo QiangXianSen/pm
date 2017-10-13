@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tanzhouedu.pm.dao.mapper.OfficeMapper">
+    <select id="queryList" parameterType="Office" resultType="Office">
+
+    </select>
+
+    <select id="queryById" parameterType="string" resultType="Office">
+
+    </select>
+    <insert id="insert" parameterType="Office" useGeneratedKeys="true"
+            keyProperty="id">
+
+    </insert>
+    <update id="update" parameterType="Office">
+
+    </update>
+    <delete id="delete" parameterType="Office">
+
+    </delete>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tanzhouedu.pm.dao.mapper.MenuMapper">
+    <select id="queryList" parameterType="Menu" resultType="Menu">
+
+    </select>
+
+    <select id="queryById" parameterType="string" resultType="Menu">
+
+    </select>
+    <insert id="insert" parameterType="Menu" useGeneratedKeys="true"
+            keyProperty="id">
+
+    </insert>
+    <update id="update" parameterType="Menu">
+
+    </update>
+    <delete id="delete" parameterType="Menu">
+
+    </delete>
+</mapper>

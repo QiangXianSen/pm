@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tanzhouedu.pm.dao.mapper.UserMapper">
+    <select id="queryAllUser" resultType="User" parameterType="User">
+      SELECT id,
+          company_id as companyId,
+          office_id AS officeId,
+          login_name as loginName,
+          password,
+          no,
+          name,
+          email,
+          phone,
+          mobile,
+          login_ip as loginIp,
+          login_date as loginDate,
+          login_flag as login_Flag,
+          create_by as createBy,
+          create_date as createDate,
+          update_by as updateBy,
+          update_date as updateDate,
+          remarks
+      FROM  pm_sys_user
+      WHERE del_flag = #{DEL_FLAG_NORMAL}
+      <if test="name != null and name != ''">
+          and name like concat('%', #{name}, '%')
+      </if>
+
+    </select>
+
+    <select id="queryList" parameterType="User" resultType="User">
+
+    </select>
+
+    <select id="queryById" parameterType="string" resultType="User">
+
+    </select>
+    <insert id="insert" parameterType="User" useGeneratedKeys="true"
+            keyProperty="id">
+
+    </insert>
+    <update id="update" parameterType="User">
+
+    </update>
+    <delete id="delete" parameterType="User">
+
+    </delete>
+</mapper>
