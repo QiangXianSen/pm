@@ -6,6 +6,8 @@
  */
 package com.tanzhouedu.pm.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @date 2017/10/10 21:04
  */
 public class BaseController {
+
+	protected Logger logger = LoggerFactory.getLogger(getClass());
 //	@ExceptionHandler
 //	public String exception(){
 //		return "error";

@@ -8,6 +8,7 @@ package com.tanzhouedu.pm.web;
 
 import com.github.pagehelper.PageInfo;
 import com.tanzhouedu.pm.common.BaseController;
+import com.tanzhouedu.pm.common.Msg;
 import com.tanzhouedu.pm.common.PageParam;
 import com.tanzhouedu.pm.entity.Dict;
 import com.tanzhouedu.pm.service.DictService;
@@ -18,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -34,6 +36,7 @@ import java.util.List;
 @Controller
 @RequestMapping("sys/dict")
 public class DictController extends BaseController{
+
 	@Resource
 	private DictService dictService;
 
@@ -77,11 +80,23 @@ public class DictController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping ("/save")
-	public String save (@Valid Dict dict, BindingResult result, Model model){
+	public String save (@Valid Dict dict, BindingResult result,
+						Model model,
+						RedirectAttributes redirectAttributes){
 		if (result.hasErrors()) {
 			return toEdit (dict, model);
 		}
-		dictService.save(dict);
+		String content = "保存字典[" + dict.getLabel() + "]";
+		Msg msg;
+		try {
+			dictService.save(dict);
+			msg = new Msg(Msg.MsgType.success, content + "成功");
+		} catch (Exception e) {
+			logger.error("保存字典信息失败！",e);
+			e.printStackTrace();
+			msg = new Msg(Msg.MsgType.error, content + "失败");
+		}
+		redirectAttributes.addFlashAttribute("msg", msg);
 		return "redirect:/sys/dict/list";
 	}
 }

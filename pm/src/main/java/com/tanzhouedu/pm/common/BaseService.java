@@ -68,7 +68,7 @@ public class BaseService <D extends BaseMapper<T>,T extends BaseEntity> {
 	public boolean save(T entity){
 		int res = 0;
 		if (StringUtils.isNotBlank(entity.getId())) {
-			entity.preUpadate();
+			entity.preUpdate();
 			res = mapper.update(entity);
 		}else{
 			entity.preInsert();

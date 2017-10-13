@@ -39,6 +39,13 @@
     <form:input path="description" cssClass="input-medium" maxlength="50" id="description" />
     &nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
 </form:form>
+
+<div id="messageBox" class="alert alert-${msg.type}">
+    <button data-dismiss="alert" class="close">x</button>
+    ${msg.content}
+
+</div>
+
 <script type="text/javascript">top.$.jBox.closeTip();</script>
 
 <table id="contentTable" class="table table-striped table-bordered table-condensed">

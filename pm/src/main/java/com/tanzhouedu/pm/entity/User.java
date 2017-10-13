@@ -1,17 +1,20 @@
 package com.tanzhouedu.pm.entity;
 
+import com.google.common.collect.Lists;
 import com.tanzhouedu.pm.common.BaseEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户实体类
  */
 public class User extends BaseEntity {
 
+    public static final String LOGIN_NORMAL = "1";
     private static final long serialVersionUID = 521939327403960794L;
-    private String companyId;
-    private String officeId;
+    private Office company;
+    private Office office;
     private String loginName;
     private String password;
     private String no;
@@ -22,20 +25,29 @@ public class User extends BaseEntity {
     private String loginFlag;
     private Date loginDate;
 
-    public String getCompanyId() {
-        return companyId;
+    private List<Role> roleList = Lists.newArrayList(); //拥有的角色
+
+    public User() {
     }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public User(String id) {
+        super(id);
     }
 
-    public String getOfficeId() {
-        return officeId;
+    public Office getCompany() {
+        return company;
     }
 
-    public void setOfficeId(String officeId) {
-        this.officeId = officeId;
+    public void setCompany(Office company) {
+        this.company = company;
+    }
+
+    public Office getOffice() {
+        return office;
+    }
+
+    public void setOffice(Office office) {
+        this.office = office;
     }
 
     public String getLoginName() {

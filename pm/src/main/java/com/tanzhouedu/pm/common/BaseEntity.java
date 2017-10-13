@@ -29,8 +29,8 @@ public class BaseEntity implements Serializable{
 
     //alt + insert
     protected String id;  //主键，唯一标识符
-    protected String createBy; //创建者
-    protected String upadateBy; //更新者
+    protected User createBy; //创建者
+    protected User updateBy; //更新者
     protected Date createDate; //创建时间
     protected Date updateDate; //更新时间
     protected String delFlag = DEL_FLAG_NORMAL; //删除标志 （0 正常， 1 删除）
@@ -44,8 +44,8 @@ public class BaseEntity implements Serializable{
     public void preInsert () {
         User user = UserUtils.getCurrentUser();
         if (user != null) {
-            this.createBy = user.getId();
-            this.upadateBy = user.getId();
+            this.createBy = user;
+            this.updateBy = user;
         }
 
         Date now = Calendar.getInstance().getTime();
@@ -56,10 +56,10 @@ public class BaseEntity implements Serializable{
      * 执行修改操作之前需要执行的步骤
      * 在Service类里，调用mapper接口的update方法以前主动调用
      */
-    public void preUpadate () {
+    public void preUpdate () {
         User user = UserUtils.getCurrentUser();
         if (user != null) {
-            this.upadateBy = user.getId();
+            this.updateBy = user;
         }
 
         Date now = Calendar.getInstance().getTime();
@@ -81,22 +81,23 @@ public class BaseEntity implements Serializable{
         this.id = id;
     }
 
-    public String getCreateBy() {
+
+    public User getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(String createBy) {
+    public void setCreateBy(User createBy) {
         this.createBy = createBy;
     }
 
-    public String getUpadateBy() {
-        return upadateBy;
+    public User getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpadateBy(String upadateBy) {
-        this.upadateBy = upadateBy;
+    public void setUpdateBy(User updateBy) {
+        this.updateBy = updateBy;
     }
-    //在生成json字符串时，格式化属性
+
     @JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getCreateDate() {
         return createDate;
@@ -105,6 +106,7 @@ public class BaseEntity implements Serializable{
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
     //在生成json字符串时，格式化属性
     @JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getUpdateDate() {

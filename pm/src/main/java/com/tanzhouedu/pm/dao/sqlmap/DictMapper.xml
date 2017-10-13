@@ -25,7 +25,7 @@
     </select>
 
     <select id="queryList" parameterType="Dict" resultType="Dict">
-      select <include refid="dictColumn" />
+        select <include refid="dictColumn" />
         FROM pm_sys_dict
         WHERE del_flag = #{DEL_FLAG_NORMAL}
         <if test="type != null and type != ''">
@@ -40,54 +40,53 @@
         order by type, sort, update_date DESC
     </select>
 
-    <select id="queryById" parameterType="Dict" resultType="Dict">
+    <select id="queryById" parameterType="string" resultType="Dict">
         SELECT <include refid="dictColumn"/>
         FROM pm_sys_dict
-        WHERE del_flag = #{delFlag}
-        and id = #{id}
+        WHERE id = #{id,jdbcType=NUMERIC}
     </select>
 
     <insert id="insert" parameterType="Dict" useGeneratedKeys="true"
             keyProperty="id">
-       INSERT INTO pm_sys_dict (
-            value,
-            label,
-            type,
-            description,
-            sort,
-            parent_id,
-            create_by,
-            create_date,
-            update_by,
-            update_date,
-            remarks,
-            del_flag
-       ) VALUES (
-            #{value},
-            #{label},
-            #{type},
-            #{description},
-            #{sort},
-            #{parentId},
-            #{createBy},
-            #{createDate},
-            #{updateBy},
-            #{updateDate},
-            #{remarks},
-            #{delFlag}
-       )
+        INSERT INTO pm_sys_dict (
+        value,
+        label,
+        type,
+        description,
+        sort,
+        parent_id,
+        create_by,
+        create_date,
+        update_by,
+        update_date,
+        remarks,
+        del_flag
+        ) VALUES (
+        #{value},
+        #{label},
+        #{type},
+        #{description},
+        #{sort},
+        #{parentId},
+        #{createBy.id},
+        #{createDate},
+        #{updateBy.id},
+        #{updateDate},
+        #{remarks},
+        #{delFlag}
+        )
     </insert>
     <update id="update" parameterType="Dict">
-      UPDATE pm_sys_dict SET
-          value = #{value},
-          label = #{label},
-          type = #{type},
-          description =  #{description},
-          sort = #{sort},
-          parent_id = #{parentId},
-          update_by = #{updateBy},
-          update_date = #{updateDate},
-          remarks = #{remarks}
+        UPDATE pm_sys_dict SET
+        value = #{value},
+        label = #{label},
+        type = #{type},
+        description =  #{description},
+        sort = #{sort},
+        parent_id = #{parentId},
+        update_by = #{updateBy.id},
+        update_date = #{updateDate},
+        remarks = #{remarks}
         WHERE id = #{id}
     </update>
 

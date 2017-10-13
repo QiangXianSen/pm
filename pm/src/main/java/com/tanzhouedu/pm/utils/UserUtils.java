@@ -12,6 +12,6 @@ public class UserUtils {
      * @return
      */
     public static User getCurrentUser () {
-        return new User();
+        return new User("1");
     }
 }
